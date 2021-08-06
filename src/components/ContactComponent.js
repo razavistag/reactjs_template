@@ -1,16 +1,20 @@
 import React, { Component } from "react";
-import { Row, Col, Typography, Checkbox, Input, Form, Button } from "antd";
 import {
-  SettingOutlined,
-  UserOutlined,
-  PhoneOutlined,
-} from "@ant-design/icons";
+  Row,
+  Col,
+  Typography,
+  Checkbox,
+  Input,
+  Form,
+  Button,
+  Space,
+} from "antd";
+import { MailOutlined, SendOutlined } from "@ant-design/icons";
 class ContactComponent extends Component {
   state = {
     msg: "",
-    };
-    
- 
+  };
+
   componentDidMount() {
     // code ...
   }
@@ -47,7 +51,14 @@ class ContactComponent extends Component {
             <span>keep in touch with us MIT Consulting LLC</span>
           </Col>
 
-          <Col xl={12} lg={12} md={12} sm={12} xs={24}>
+          <Col
+            xl={12}
+            lg={12}
+            md={12}
+            sm={12}
+            xs={24}
+            style={{ marginTop: 40 }}
+          >
             <Form
               name="basic"
               labelCol={{ span: 8 }}
@@ -90,12 +101,47 @@ class ContactComponent extends Component {
                 <Input.TextArea />
               </Form.Item>
 
-              <Form.Item wrapperCol={{ offset: 8 }}>
-                <Button type="primary" htmlType="submit">
-                  SEND
+              <Form.Item>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  style={{ float: "right" }}
+                >
+                  <SendOutlined /> SEND
                 </Button>
               </Form.Item>
             </Form>
+          </Col>
+          <Col
+            xl={12}
+            lg={12}
+            md={12}
+            sm={12}
+            xs={24}
+            style={{ paddingLeft: 40, marginTop: 40 }}
+          >
+            <Typography.Title level={3}>
+              Contact MIT Consulting LLC.
+            </Typography.Title>
+            <Space direction="vertical">
+              <Typography.Text>Edison , NJ USA</Typography.Text>
+              <Typography.Text>United States.</Typography.Text>
+              <Typography.Text>P: (732) 820-0662</Typography.Text>
+            </Space>
+            <br></br>
+            <br></br>
+            <Typography.Title level={5}>Mail for support</Typography.Title>
+            <Typography.Text>
+              <MailOutlined style={{ paddingRight: 10 }} />
+              support@vistagconsult.com
+            </Typography.Text>
+            <br></br>
+            <br></br>
+            <Typography.Title level={5}>Mail for Informations</Typography.Title>
+            <Typography.Text>
+              <MailOutlined style={{ paddingRight: 10 }} />
+              infor@vistagconsult.com
+            </Typography.Text>
           </Col>
         </Row>
       </>
