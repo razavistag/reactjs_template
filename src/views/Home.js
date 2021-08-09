@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-
 import ClientNavigation from "../components/ClientNavigation";
 import CarouselComponent from "../components/CarouselComponent";
 import CardComponent from "../components/CardComponent";
 import ContactComponent from "../components/ContactComponent";
+import Footer from "../components/Footer";
 class Home extends Component {
   state = {
     msg: "",
@@ -17,25 +17,7 @@ class Home extends Component {
         <CarouselComponent />
         <CardComponent />
         <ContactComponent />
-
-
-        <br></br>
-        <br></br>
-        <br></br> 
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+        <Footer />
       </>
     );
   }

@@ -1,30 +1,32 @@
 import React, { Component } from "react";
-import {
-  Row,
-  Col,
-  Typography,
-  Checkbox,
-  Input,
-  Form,
-  Button,
-  Space,
-} from "antd";
+import { Row, Col, Typography, Input, Form, Button, Space } from "antd";
 import { MailOutlined, SendOutlined } from "@ant-design/icons";
 class ContactComponent extends Component {
-  state = {
-    msg: "",
-  };
-
   componentDidMount() {
     // code ...
   }
 
+  contactMessagePost = () => {
+    console.log("post");
+  };
+
+  handleChange = (e) => {
+    this.setState({ value: e.target.value });
+  };
+
   render() {
-    const onFinish = (values: any) => {
+    const onFinish = (values) => {
       console.log("Success:", values);
+
+      let obj = {
+        name: values.Name,
+        email: values.Email,
+        phone: values.Telephone,
+        message: values.Message,
+      };
     };
 
-    const onFinishFailed = (errorInfo: any) => {
+    const onFinishFailed = (errorInfo) => {
       console.log("Failed:", errorInfo);
     };
     return (
