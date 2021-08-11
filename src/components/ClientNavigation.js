@@ -1,15 +1,22 @@
 import React, { Component } from "react";
 import { Menu, Row, Col } from "antd";
+import { Link } from "react-router-dom";
 
 class ClientNavigation extends Component {
   state = {
-    msg: "",
+    current: "1",
   };
 
   render() {
+    const current = window.location.pathname;
+    console.log("url", window.location.pathname);
     return (
       <>
-        <Row style={{ backgroundColor: "#001529" }}>
+        <Row
+          style={{
+            backgroundColor: "#001529",
+          }}
+        >
           <Col
             xl={12}
             lg={12}
@@ -19,7 +26,7 @@ class ClientNavigation extends Component {
             style={{
               color: "#fff",
               display: "flex",
-              alignItems: "center", 
+              alignItems: "center",
               padding: 10,
             }}
           >
@@ -29,12 +36,20 @@ class ClientNavigation extends Component {
             <Menu
               theme="dark"
               mode="horizontal"
-              defaultSelectedKeys={["1"]}
+              selectedKeys={[current]}
               style={{ lineHeight: "40px" }}
               breakpoint="xs"
               collapsedWidth="0"
+              onClick={this.handleClick}
             >
-              <Menu.Item key="1">nav 1</Menu.Item>
+              <Menu.Item key="/">
+                <Link to="/">Home</Link>
+              </Menu.Item>
+              <Menu.Item key="/messages">
+                <Link to="/messages">View Messages</Link>
+              </Menu.Item>
+
+              <Menu.Item key="10">nav 10</Menu.Item>
               <Menu.SubMenu
                 key="setting:1-12"
                 title={
@@ -69,7 +84,7 @@ class ClientNavigation extends Component {
                   <Menu.Item key="setting:4-1">Option 4</Menu.Item>
                 </Menu.ItemGroup>
               </Menu.SubMenu>
-              <Menu.Item key="2">nav 2</Menu.Item>
+
               <Menu.Item key="3">nav 3</Menu.Item>
               <Menu.Item key="4">nav 4</Menu.Item>
               <Menu.Item key="5">nav 5</Menu.Item>
@@ -77,7 +92,6 @@ class ClientNavigation extends Component {
               <Menu.Item key="7">nav 7</Menu.Item>
               <Menu.Item key="8">nav 8</Menu.Item>
               <Menu.Item key="9">nav 9</Menu.Item>
-              <Menu.Item key="10">nav 10</Menu.Item>
             </Menu>
           </Col>
         </Row>

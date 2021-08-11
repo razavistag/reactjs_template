@@ -1,29 +1,65 @@
 import React, { Component } from "react";
-import { Row, Col, Typography, Input, Form, Button, Space } from "antd";
+import {
+  Row,
+  Col,
+  Typography,
+  Input,
+  Form,
+  Button,
+  Space,
+  message,
+} from "antd";
 import { MailOutlined, SendOutlined } from "@ant-design/icons";
+import http from "../helper/AxiosConfig";
+
 class ContactComponent extends Component {
+  contactFormRef = React.createRef();
+  state = {
+    submitLoading: false,
+  };
+
   componentDidMount() {
     // code ...
   }
 
-  contactMessagePost = () => {
-    console.log("post");
+  close = () => {
+    this.contactFormRef.current.resetFields();
+
+    setTimeout(() => {
+      this.setState({ submitLoading: false });
+    }, 2000);
   };
 
-  handleChange = (e) => {
-    this.setState({ value: e.target.value });
+  axiosPost = async (url, e) => {
+    this.setState({ submitLoading: true });
+    await http
+      .post(url, e)
+      .then((response) => {
+        let i = response.data;
+        console.log(i);
+        message.success(i.message, 2); // (message, delay)
+        this.close();
+      })
+      .catch((e) => {
+        console.log(e);
+        if (e.response) {
+          message.success(e.response, 2); // (message, delay)
+        }
+      });
   };
 
   render() {
     const onFinish = (values) => {
       console.log("Success:", values);
 
-      let obj = {
+      let Data = {
         name: values.Name,
         email: values.Email,
         phone: values.Telephone,
         message: values.Message,
       };
+
+      this.axiosPost("/contact", Data);
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -67,6 +103,7 @@ class ContactComponent extends Component {
               initialValues={{ remember: true }}
               onFinish={onFinish}
               onFinishFailed={onFinishFailed}
+              ref={this.contactFormRef}
             >
               <Form.Item
                 label="Name"
@@ -106,6 +143,7 @@ class ContactComponent extends Component {
               <Form.Item>
                 <Button
                   type="primary"
+                  loading={this.state.submitLoading}
                   htmlType="submit"
                   style={{ float: "right" }}
                 >
