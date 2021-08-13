@@ -9,7 +9,7 @@ class ClientNavigation extends Component {
 
   render() {
     const current = window.location.pathname;
-    console.log("url", window.location.pathname);
+    
     return (
       <>
         <Row
